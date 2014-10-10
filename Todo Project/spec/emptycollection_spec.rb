@@ -2,25 +2,13 @@ require 'spec_helper'
 require 'date'
 
 describe "Empty Collection Todos Test" do
-    
-#   ##HTTP Non-Empty
-#    before :each do
-#        hash = [
-#            {title: "Black Ranger", due: Date.today.to_s},
-#            {title: "Pink Ranger", due: Date.today.to_s},
-#            {title: "Blue Ranger", due: Date.today.to_s},
-#            {title: "Yellow Ranger", due: Date.today.to_s},
-#            {title: "Red Ranger", due: Date.today.to_s},
-#        ]
-#        create_todos hash
-#    end
-    
+    #Deleting all items in the collection after all tests have been run
     after :all do
         delete_all
     end
     
     ## Test 01
-    it "should create item with title" do
+    it "POST to collection with title" do
         title = "Romeo"
         
         r = HTTParty.post url("/todos"),
@@ -30,7 +18,7 @@ describe "Empty Collection Todos Test" do
     end
     
     ## Test 02
-    it "should create item with due date" do
+    it "POST to collection with due date" do
         due_date = "09-10-2014"
         
         r = HTTParty.post url("/todos"),
@@ -40,7 +28,7 @@ describe "Empty Collection Todos Test" do
     end
     
     ## Test 03
-    it "should post item with title & due date" do
+    it "POST to collection with title & due date" do
         title = "Romeo"
         due_date = "2014-10-09"
         
@@ -53,7 +41,7 @@ describe "Empty Collection Todos Test" do
     end
     
     ## Test 04
-    it "should post item with no params" do
+    it "POST with no params" do
         r = HTTParty.post url("/todos"),
             query: {}
         
@@ -68,7 +56,7 @@ describe "Empty Collection Todos Test" do
     end
     
     ## Test 06
-    it "should PUT with no parameters" do        
+    it "PUT with no parameters" do        
         r = HTTParty.put url("/todos"),
             query: {}
         
@@ -76,7 +64,7 @@ describe "Empty Collection Todos Test" do
     end
     
     ## Test 07
-    it "should DELETE with no parameters" do        
+    it "DELETE with no parameters" do        
         r = HTTParty.delete url("/todos"),
             query: {}
         
